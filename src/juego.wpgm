@@ -1,8 +1,23 @@
 import wollok.game.*
-import pepita.*
+import naves.*
 
 program juego {
-	game.title("Juego Base")
-	game.addVisual(pepita)
+	game.title("Star Cold War")
+	game.height(10)
+	game.width(20)
+	game.addVisual(motherRussia)
+	game.addVisual(usa)
+	// Movimiento de las naves
+	keyboard.w().onPressDo {usa.moverseArriba()}
+	keyboard.a().onPressDo {usa.moverseIzquierda()}
+	keyboard.s().onPressDo {usa.moverseAbajo()}
+	keyboard.d().onPressDo {usa.moverseDerecha()}
+	keyboard.up().onPressDo {motherRussia.moverseArriba()}
+	keyboard.left().onPressDo {motherRussia.moverseIzquierda()}
+	keyboard.down().onPressDo {motherRussia.moverseAbajo()}
+	keyboard.right().onPressDo {motherRussia.moverseDerecha()}
+	// Disparo de las neves
+	keyboard.space().onPressDo {usa.disparar()}
+	keyboard.enter().onPressDo {motherRussia.disparar()}
 	game.start()
 }
