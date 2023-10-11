@@ -3,6 +3,7 @@ import wollok.game.*
 object motherRussia {
 
 	var property position = game.at(game.width().div(2), game.height() - 1)
+	var property vida = 3
 
 	method image() = "pepita.png"
 
@@ -30,10 +31,21 @@ object motherRussia {
 		game.addVisual(balaMotherRussia)
 		balaMotherRussia.moverse()
 	}
+	
+	method reducirVida() {
+		vida -= 1
+	}
+	
+	method morir() {
+		game.removeVisual(usa)
+		game.removeVisual(self)
+	}
 }
 
 object usa {
+	
 	var property position = game.at(game.width().div(2), 0)
+	var property vida = 3
 	
 	method image() = "pepita.png"
 	
@@ -61,12 +73,21 @@ object usa {
 		game.addVisual(balaUsa)
 		balaUsa.moverse()
 	}
+	
+	method reducirVida() {
+		vida -= 1
+	}
+	
+	method morir() {
+		game.removeVisual(self)
+		game.removeVisual(motherRussia)
+	}
 }
 
 object balaUsa {
 	var property position = usa.position().up(1)
 	
-	method image() = "224681.png"
+	method image() = "balaUsa.png"
 	
 	method arriba(){
 		if(position.y() < game.height() - 1)
@@ -80,14 +101,22 @@ object balaUsa {
 	
 	method moverse() {
 		position = usa.position().up(1)
-		game.onTick(2000, "moverseBalaUsa", {self.arriba()})
+		game.onTick(1000, "moverseBalaUsa", { self.arriba() })
+	}
+	
+	method restarVida() {
+		game.removeVisual(self)
+		if(motherRussia.vida() == 0)
+			motherRussia.morir()
+		else
+			motherRussia.reducirVida()
 	}
 }
 
 object balaMotherRussia {
 	var property position = motherRussia.position().down(1)
 	
-	method image() = "224681.png"
+	method image() = "balaMotherRussia.png"
 	
 	method abajo(){
 		if(position.y() > 0)
@@ -101,6 +130,14 @@ object balaMotherRussia {
 	
 	method moverse() {
 		position = motherRussia.position().down(1)
-		game.onTick(2000, "moverseBalaMotherRussia", {self.abajo()})
+		game.onTick(1000, "moverseBalaMotherRussia", { self.abajo() })
+	}
+	
+	method restarVida() {
+		game.removeVisual(self)
+		if(usa.vida() == 0)
+			usa.morir()
+		else
+			usa.reducirVida()
 	}
 }

@@ -2,22 +2,32 @@ import wollok.game.*
 import naves.*
 
 program juego {
+	// Configuración básica
 	game.title("Star Cold War")
 	game.height(10)
 	game.width(20)
 	game.addVisual(motherRussia)
 	game.addVisual(usa)
+	
 	// Movimiento de las naves
-	keyboard.w().onPressDo {usa.moverseArriba()}
-	keyboard.a().onPressDo {usa.moverseIzquierda()}
-	keyboard.s().onPressDo {usa.moverseAbajo()}
-	keyboard.d().onPressDo {usa.moverseDerecha()}
-	keyboard.up().onPressDo {motherRussia.moverseArriba()}
-	keyboard.left().onPressDo {motherRussia.moverseIzquierda()}
-	keyboard.down().onPressDo {motherRussia.moverseAbajo()}
-	keyboard.right().onPressDo {motherRussia.moverseDerecha()}
-	// Disparo de las neves
-	keyboard.space().onPressDo {usa.disparar()}
-	keyboard.enter().onPressDo {motherRussia.disparar()}
+	keyboard.w().onPressDo { usa.moverseArriba() }
+	keyboard.a().onPressDo { usa.moverseIzquierda() }
+	keyboard.s().onPressDo { usa.moverseAbajo() }
+	keyboard.d().onPressDo { usa.moverseDerecha() }
+	keyboard.up().onPressDo { motherRussia.moverseArriba() }
+	keyboard.left().onPressDo { motherRussia.moverseIzquierda() }
+	keyboard.down().onPressDo { motherRussia.moverseAbajo() }
+	keyboard.right().onPressDo { motherRussia.moverseDerecha() }
+	
+	// Disparo de las naves
+	keyboard.space().onPressDo { usa.disparar() }
+	keyboard.enter().onPressDo { motherRussia.disparar() }
+	
+	// Colisioness
+	game.onCollideDo(usa, { bala => bala.restarVida() })
+	game.onCollideDo(motherRussia, { bala => bala.restarVida() })
+	
+	
+	// Comienzo del juego
 	game.start()
 }
