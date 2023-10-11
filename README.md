@@ -1,10 +1,12 @@
-# Nombre del juego (<- borrar y completar)
+# Star Cold War
 
 ## Equipo de desarrollo
 
-- Alguien
-- Persona
-- etc.
+- Noah Martin Santander Chavez
+- Martina Caneda
+- Luca Aiello
+- Kevin Tarrisse
+- Etienne Zimmerman
 
 ## Capturas
 
@@ -17,6 +19,6 @@
 
 ## Otros
 
-- Curso/Facultad
-- Versión de wollok
-- Una vez terminado, no tenemos problemas en que el repositorio sea público / queremos manternerlo privado
+- K2004 y K2104
+- Version 3.0.0
+- Una vez terminado, no tenemos problemas en que el repositorio sea público 
