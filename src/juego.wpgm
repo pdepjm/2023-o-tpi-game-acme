@@ -8,6 +8,8 @@ program juego {
 	game.width(20)
 	game.addVisual(motherRussia)
 	game.addVisual(usa)
+	game.addVisual(vidaUsa)
+	game.addVisual(vidaMotherRussia)
 	
 	// Movimiento de las naves
 	keyboard.w().onPressDo { usa.moverseArriba() }
@@ -24,8 +26,8 @@ program juego {
 	keyboard.enter().onPressDo { motherRussia.disparar() }
 	
 	// Colisioness
-	game.onCollideDo(usa, { bala => bala.restarVida() })
-	game.onCollideDo(motherRussia, { bala => bala.restarVida() })
+	game.onCollideDo(usa, { bala => bala.restarVida(usa) })
+	game.onCollideDo(motherRussia, { bala => bala.restarVida(motherRussia) })
 	
 	
 	// Comienzo del juego
