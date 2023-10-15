@@ -13,6 +13,32 @@ object musicaDeFondo {
 	}
 }
 
+object asteroide {
+	var property position = game.center()
+	
+	method image() = "asteroide.png"
+	
+	method moverseArriba() {
+		if(position.y() < game.height() - 1)	
+			position.up(1)
+	}
+	
+	method moverseAbajo() {
+		if(position.y() > 0)	
+			position.down(1)
+	}
+	
+	method moverseIzquierda() {
+		if(position.x() > 0)	
+			position.up(1)
+	}
+	
+	method moverseDerecha() {
+		if(position.x() < game.width() - 1)	
+			position.up(1)
+	}
+}
+
 class Nave {
 	var property position
 	var property vida

@@ -10,6 +10,7 @@ program juego {
 	game.addVisual(usa)
 	game.addVisual(vidaUsa)
 	game.addVisual(vidaMotherRussia)
+	game.addVisual(asteroide)
 	musicaDeFondo.sonar()
 	
 	// Movimiento de las naves
