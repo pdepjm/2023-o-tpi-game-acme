@@ -10,6 +10,7 @@ program juego {
 	game.addVisual(usa)
 	game.addVisual(vidaUsa)
 	game.addVisual(vidaMotherRussia)
+	musicaDeFondo.sonar()
 	
 	// Movimiento de las naves
 	keyboard.w().onPressDo { usa.moverseArriba() }
