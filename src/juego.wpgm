@@ -27,9 +27,13 @@ program juego {
 	keyboard.space().onPressDo { usa.disparar() }
 	keyboard.enter().onPressDo { motherRussia.disparar() }
 	
+	// Movimiento del asteroide
+	game.onTick(1000, "moverseAsteroide", { asteroide.moverse() })
+	
 	// Colisioness
 	game.onCollideDo(usa, { bala => bala.restarVida(usa) })
 	game.onCollideDo(motherRussia, { bala => bala.restarVida(motherRussia) })
+	game.onCollideDo(asteroide, { nave => nave.morir() })
 	
 	
 	// Comienzo del juego

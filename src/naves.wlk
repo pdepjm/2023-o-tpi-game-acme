@@ -5,6 +5,7 @@ object musicaDeFondo {
 	
 	method sonar() {
 		musica.shouldLoop(true)
+		musica.volume(0.5)
 		game.schedule(500, {musica.play()})
 	}
 	
@@ -14,28 +15,46 @@ object musicaDeFondo {
 }
 
 object asteroide {
-	var property position = game.center()
+	var property position = game.at((0.. game.width()-1).anyOne(), (0.. game.height()-1).anyOne())
+	var rebotoArriba = false
+	var rebotoDerecha = false
 	
 	method image() = "asteroide.png"
 	
-	method moverseArriba() {
-		if(position.y() < game.height() - 1)	
-			position.up(1)
+	method moverseDiagonal(direccion) {
+		if( position.x() < game.width() - 1 && !rebotoDerecha)	
+		{
+			position = position.up(direccion).right(1)
+			rebotoDerecha = false
+		}
+		else
+		{
+			if(position.x() > 0)
+			{
+				position = position.up(direccion).left(1)
+				rebotoDerecha = true	
+			}
+			else
+				rebotoDerecha = false
+		}
 	}
-	
-	method moverseAbajo() {
-		if(position.y() > 0)	
-			position.down(1)
-	}
-	
-	method moverseIzquierda() {
-		if(position.x() > 0)	
-			position.up(1)
-	}
-	
-	method moverseDerecha() {
-		if(position.x() < game.width() - 1)	
-			position.up(1)
+
+	method moverse() {
+		if(position.y() < game.height() - 1 && !rebotoArriba)
+		{
+			self.moverseDiagonal(1)
+			rebotoArriba = false
+		}
+		else
+		{
+			if(position.y() > 0)
+			{
+				self.moverseDiagonal(-1)
+				rebotoArriba = true
+			}	
+			else
+				rebotoArriba = false
+		}	
 	}
 }
 
