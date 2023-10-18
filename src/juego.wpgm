@@ -6,6 +6,7 @@ program juego {
 	game.title("Star Cold War")
 	game.height(10)
 	game.width(20)
+	game.boardGround("espacio.png")
 	game.addVisual(motherRussia)
 	game.addVisual(usa)
 	game.addVisual(vidaUsa)

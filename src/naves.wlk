@@ -1,7 +1,7 @@
 import wollok.game.*
 
 object musicaDeFondo {
-	const musica = game.sound("cancionDeFondo.mp3")
+	const musica = game.sound("duelOfFates.mp3")
 	
 	method sonar() {
 		musica.shouldLoop(true)
@@ -61,14 +61,13 @@ object asteroide {
 class Nave {
 	var property position
 	var property vida
-	var imagen
 	var limiteAbajo
 	var limiteArriba
 	var bala
 	var nombreNave
 	var property ganar = false
 
-	method image() = if(ganar) "1usa.png" else imagen 
+	method image() = if(ganar) nombreNave + "Victoria.png" else nombreNave + ".png"
 
 	method moverseArriba() {
 		if(position.y() < limiteArriba)
@@ -111,13 +110,13 @@ class Nave {
 
 class Bala {
 	var property position
-	var imagen 
+	var nombreNave
 	var limiteMovimiento
 	var movimiento
 	var nombreEvento
 	const naves = [usa, motherRussia]
 	
-	method image() = imagen
+	method image() = "bala" + nombreNave + ".png"
 	
 	method mover(){	
 		if(position.y() == limiteMovimiento)
@@ -158,17 +157,17 @@ class Vida {
 }
 
 const balaMotherRussia = new Bala(position = motherRussia.position().down(1), 
-	imagen = "balaMotherRussia.png", limiteMovimiento = 0, movimiento = -1, nombreEvento = "moverseBalaMotherRussia")
+	nombreNave = "motherRussia", limiteMovimiento = 0, movimiento = -1, nombreEvento = "moverseBalaMotherRussia")
 
-const balaUsa = new Bala(position = usa.position().up(1), imagen = "balaUsa.png", 
+const balaUsa = new Bala(position = usa.position().up(1), nombreNave = "usa", 
 	limiteMovimiento = game.height() - 1, movimiento = 1, nombreEvento = "moverseBalaUsa")
 
 const motherRussia = new Nave(position = game.at(game.width().div(2), game.height() - 1), vida = 2, 
-	imagen = "pepita.png", limiteAbajo = game.height().div(2), limiteArriba = game.height() - 1, 
+	limiteAbajo = game.height().div(2), limiteArriba = game.height() - 1, 
 	nombreNave = "motherRussia", bala = balaMotherRussia)
 	
 const usa = new Nave(position = game.at(game.width().div(2), 0), vida = 2, 
-	imagen = "pepita.png", limiteAbajo = 0, limiteArriba = game.height().div(2) - 1, 
+	limiteAbajo = 0, limiteArriba = game.height().div(2) - 1, 
 	nombreNave = "usa", bala = balaUsa)
 	
 const vidaUsa = new Vida(nave = usa, position = game.origin(), nombreNave = "usa")
