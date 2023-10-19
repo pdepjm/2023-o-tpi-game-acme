@@ -1,5 +1,22 @@
 import wollok.game.*
 
+object juego {
+	const naves = [usa, motherRussia]
+		
+	method reducirVida(nave) {
+		if(nave.vida() == 0)
+		{
+			nave.reducirVida()
+			nave.morir()
+			naves.remove(nave)
+			naves.first().ganar(true)
+			naves.first().tocarCancionVictoria()
+		}	
+		else
+			nave.reducirVida()
+	}
+}
+
 object musicaDeFondo {
 	const musica = game.sound("duelOfFates.mp3")
 	
@@ -119,7 +136,6 @@ class Bala {
 	var nombreNave
 	var limiteMovimiento
 	var movimiento
-	const naves = [usa, motherRussia]
 	
 	method image() = "bala" + nombreNave + ".png"
 	
@@ -140,16 +156,7 @@ class Bala {
 	
 	method restarVida(nave) {
 		game.removeVisual(self)
-		if(nave.vida() == 0)
-		{
-			nave.reducirVida()
-			nave.morir()
-			naves.remove(nave)
-			naves.first().ganar(true)
-			naves.first().tocarCancionVictoria()
-		}	
-		else
-			nave.reducirVida()
+		juego.reducirVida(nave)
 	}
 }
 
