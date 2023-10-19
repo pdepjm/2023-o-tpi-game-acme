@@ -5,7 +5,7 @@ object musicaDeFondo {
 	
 	method sonar() {
 		musica.shouldLoop(true)
-		musica.volume(0.5)
+		musica.volume(0.2)
 		game.schedule(500, {musica.play()})
 	}
 	
@@ -63,11 +63,14 @@ class Nave {
 	var property vida
 	var limiteAbajo
 	var limiteArriba
-	var bala
 	var nombreNave
+	var limite
+	var direccion
 	var property ganar = false
 
 	method image() = if(ganar) nombreNave + "Victoria.png" else nombreNave + ".png"
+
+	method nombreNave() = nombreNave
 
 	method moverseArriba() {
 		if(position.y() < limiteArriba)
@@ -90,6 +93,9 @@ class Nave {
 	}
 
 	method disparar() {
+		const bala = new Bala(position = self.position().down(1), 
+		nombreNave = self.nombreNave(), limiteMovimiento = limite, movimiento = direccion)
+		game.sound("blasterSonido.mp3").play()
 		game.addVisual(bala)
 		bala.moverse(position)
 	}
@@ -113,7 +119,6 @@ class Bala {
 	var nombreNave
 	var limiteMovimiento
 	var movimiento
-	var nombreEvento
 	const naves = [usa, motherRussia]
 	
 	method image() = "bala" + nombreNave + ".png"
@@ -121,7 +126,7 @@ class Bala {
 	method mover(){	
 		if(position.y() == limiteMovimiento)
 		{
-			game.removeTickEvent(nombreEvento)
+			game.removeTickEvent("moverseBala" + nombreNave)
 			game.removeVisual(self)
 		}
 		else
@@ -130,7 +135,7 @@ class Bala {
 	
 	method moverse(posicion) {
 		position = posicion.up(movimiento)
-		game.onTick(100, nombreEvento, { self.mover() })
+		game.onTick(100, "moverseBala" + nombreNave, { self.mover() })
 	}
 	
 	method restarVida(nave) {
@@ -151,24 +156,17 @@ class Bala {
 class Vida {
 	var property position
 	var property nave
-	const nombreNave
 
-	method image() = if(nave.vida() < 0) "vacio.png" else (nave.vida() + 1).stringValue() + nombreNave + ".png"
+	method image() = if(nave.vida() < 0) "vacio.png" else (nave.vida() + 1).stringValue() + nave.nombreNave() + ".png"
 }
 
-const balaMotherRussia = new Bala(position = motherRussia.position().down(1), 
-	nombreNave = "motherRussia", limiteMovimiento = 0, movimiento = -1, nombreEvento = "moverseBalaMotherRussia")
-
-const balaUsa = new Bala(position = usa.position().up(1), nombreNave = "usa", 
-	limiteMovimiento = game.height() - 1, movimiento = 1, nombreEvento = "moverseBalaUsa")
-
 const motherRussia = new Nave(position = game.at(game.width().div(2), game.height() - 1), vida = 2, 
-	limiteAbajo = game.height().div(2), limiteArriba = game.height() - 1, 
-	nombreNave = "motherRussia", bala = balaMotherRussia)
+	limiteAbajo = game.height().div(2), limiteArriba = game.height() - 1, nombreNave = "motherRussia",
+	limite = 0, direccion = -1)
 	
 const usa = new Nave(position = game.at(game.width().div(2), 0), vida = 2, 
-	limiteAbajo = 0, limiteArriba = game.height().div(2) - 1, 
-	nombreNave = "usa", bala = balaUsa)
+	limiteAbajo = 0, limiteArriba = game.height().div(2) - 1, nombreNave = "usa",
+	limite = game.height() - 1, direccion = 1)
 	
-const vidaUsa = new Vida(nave = usa, position = game.origin(), nombreNave = "usa")
-const vidaMotherRussia = new Vida(nave = motherRussia, position = game.at(0, game.height() - 1), nombreNave = "motherRussia")
+const vidaUsa = new Vida(nave = usa, position = game.origin())
+const vidaMotherRussia = new Vida(nave = motherRussia, position = game.at(0, game.height() - 1))
