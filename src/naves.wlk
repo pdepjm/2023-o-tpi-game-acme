@@ -2,23 +2,18 @@ import wollok.game.*
 
 object juego {
 	const naves = [usa, motherRussia]
-		
-	method reducirVida(nave) {
+	
+	method reducirVidaNave(nave) {
 		if(nave.vida() == 0)
 		{
-			self.terminar(nave)
+			nave.reducirVida()
+			naves.remove(nave)
+			game.allVisuals().forEach({ cosa => game.removeVisual(cosa) })
+			naves.first().ganar(true)
+			naves.first().festejar()
 		}	
 		else
 			nave.reducirVida()
-	}
-	
-	method terminar(nave){
-		nave.reducirVida()
-		nave.morir()
-		naves.remove(nave)
-		naves.first().ganar(true)
-		naves.first().tocarCancionVictoria()
-		game.removeVisual(asteroide)
 	}
 }
 
@@ -107,18 +102,22 @@ class Nave {
 	method moverseIzquierda() {
 		if(position.x() > 0 && !ganar)
 			position = position.left(1)
+		else
+			position = game.at(game.width() - 1, position.y())
 	}
 	
 	method moverseDerecha() {
 		if(position.x() < game.width() - 1 && !ganar)
 			position = position.right(1)
+		else
+			position = game.at(0, position.y())
 	}
 
 	method disparar() {
-		if(!ganar)
+		const bala = new Bala(position = self.position().down(1), 
+		nombreNave = self.nombreNave(), limiteMovimiento = limite, movimiento = direccion)
+		if(!game.hasVisual(bala) && !ganar)
 		{
-			const bala = new Bala(position = self.position().down(1), 
-			nombreNave = self.nombreNave(), limiteMovimiento = limite, movimiento = direccion)
 			game.sound("blasterSonido.mp3").play()
 			game.addVisual(bala)
 			bala.moverse(position)
@@ -129,12 +128,13 @@ class Nave {
 		vida -= 1
 	}
 	
-	method morir() {
-		game.removeVisual(self)
+	method festejar() {
+		self.tocarCancionVictoria()
+		position = game.origin()
+		game.addVisual(self)
 	}
 	
-	method tocarCancionVictoria(){
-		position = game.center()
+	method tocarCancionVictoria() {
 		musicaDeFondo.parar()
 		game.sound("cancionVictoria"+ nombreNave +".mp3").play()
 	}
@@ -165,7 +165,7 @@ class Bala {
 	
 	method restarVida(nave) {
 		game.removeVisual(self)
-		juego.reducirVida(nave)
+		juego.reducirVidaNave(nave)
 	}
 }
 
