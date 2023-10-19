@@ -32,9 +32,9 @@ program juego {
 	game.onTick(1000, "moverseAsteroide", { asteroide.moverse() })
 	
 	// Colisioness
-	game.onCollideDo(usa, { bala => bala.restarVida(usa) })
-	game.onCollideDo(motherRussia, { bala => bala.restarVida(motherRussia) })
-	game.onCollideDo(asteroide, { nave => nave.morir() })
+	game.onCollideDo(usa, { proyectil => proyectil.restarVida(usa) })
+	game.onCollideDo(motherRussia, { proyectil => proyectil.restarVida(motherRussia) })
+
 	
 	
 	// Comienzo del juego

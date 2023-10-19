@@ -6,14 +6,18 @@ object juego {
 	method reducirVidaNave(nave) {
 		if(nave.vida() == 0)
 		{
-			nave.reducirVida()
-			naves.remove(nave)
-			game.allVisuals().forEach({ cosa => game.removeVisual(cosa) })
-			naves.first().ganar(true)
-			naves.first().festejar()
+			self.terminar(nave)
 		}	
 		else
 			nave.reducirVida()
+	}
+	
+	method terminar(nave) {
+		nave.reducirVida()
+		naves.remove(nave)
+		game.allVisuals().forEach({ cosa => game.removeVisual(cosa) })
+		naves.first().ganar(true)
+		naves.first().festejar()
 	}
 }
 
@@ -37,6 +41,10 @@ object asteroide {
 	var rebotoDerecha = false
 	
 	method image() = "asteroide.png"
+	
+	method restarVida(nave) {
+		juego.terminar(nave)
+	}
 	
 	method moverseDiagonal(direccion) {
 		if( position.x() < game.width() - 1 && !rebotoDerecha)	
@@ -149,7 +157,7 @@ class Bala {
 	method image() = "bala" + nombreNave + ".png"
 	
 	method mover(){	
-		if(position.y() == limiteMovimiento)
+		if(position.y() == limiteMovimiento && game.hasVisual(self))
 		{
 			game.removeTickEvent("moverseBala" + nombreNave)
 			game.removeVisual(self)
