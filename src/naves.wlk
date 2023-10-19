@@ -6,14 +6,19 @@ object juego {
 	method reducirVida(nave) {
 		if(nave.vida() == 0)
 		{
-			nave.reducirVida()
-			nave.morir()
-			naves.remove(nave)
-			naves.first().ganar(true)
-			naves.first().tocarCancionVictoria()
+			self.terminar(nave)
 		}	
 		else
 			nave.reducirVida()
+	}
+	
+	method terminar(nave){
+		nave.reducirVida()
+		nave.morir()
+		naves.remove(nave)
+		naves.first().ganar(true)
+		naves.first().tocarCancionVictoria()
+		game.removeVisual(asteroide)
 	}
 }
 
@@ -90,31 +95,34 @@ class Nave {
 	method nombreNave() = nombreNave
 
 	method moverseArriba() {
-		if(position.y() < limiteArriba)
+		if(position.y() < limiteArriba && !ganar)
 			position = position.up(1)
 	}
 	
 	method moverseAbajo() {
-		if(position.y() > limiteAbajo)
+		if(position.y() > limiteAbajo && !ganar)
 			position = position.down(1)
 	}
 	
 	method moverseIzquierda() {
-		if(position.x() > 0)
+		if(position.x() > 0 && !ganar)
 			position = position.left(1)
 	}
 	
 	method moverseDerecha() {
-		if(position.x() < game.width() - 1)
+		if(position.x() < game.width() - 1 && !ganar)
 			position = position.right(1)
 	}
 
 	method disparar() {
-		const bala = new Bala(position = self.position().down(1), 
-		nombreNave = self.nombreNave(), limiteMovimiento = limite, movimiento = direccion)
-		game.sound("blasterSonido.mp3").play()
-		game.addVisual(bala)
-		bala.moverse(position)
+		if(!ganar)
+		{
+			const bala = new Bala(position = self.position().down(1), 
+			nombreNave = self.nombreNave(), limiteMovimiento = limite, movimiento = direccion)
+			game.sound("blasterSonido.mp3").play()
+			game.addVisual(bala)
+			bala.moverse(position)
+		}	
 	}
 	
 	method reducirVida() {
@@ -126,6 +134,7 @@ class Nave {
 	}
 	
 	method tocarCancionVictoria(){
+		position = game.center()
 		musicaDeFondo.parar()
 		game.sound("cancionVictoria"+ nombreNave +".mp3").play()
 	}
