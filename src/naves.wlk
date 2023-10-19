@@ -1,7 +1,39 @@
 import wollok.game.*
 
+object menu {
+	var property position = game.origin()
+	var menu = true
+	
+	method image() = if(menu) "menu.jpg" else "controles.jpg"
+	
+	method activarMenu() {
+		menu = true
+	}
+	
+	method menu(tipo) {
+		menu = tipo
+	}
+}
+
 object juego {
 	const naves = [usa, motherRussia]
+	
+	method comenzar() {
+		game.removeVisual(menu)
+		musicaMenu.parar()
+		musicaPartida.sonar()
+		game.addVisual(motherRussia)
+		game.addVisual(usa)
+		game.addVisual(vidaUsa)
+		game.addVisual(vidaMotherRussia)
+		game.addVisual(asteroide)
+		// Movimiento del asteroide
+		game.onTick(1000, "moverseAsteroide", { asteroide.moverse() })
+		
+		// Colisioness
+		game.onCollideDo(usa, { proyectil => proyectil.restarVida(usa) })
+		game.onCollideDo(motherRussia, { proyectil => proyectil.restarVida(motherRussia) })
+	}
 	
 	method reducirVidaNave(nave) {
 		if(nave.vida() == 0)
@@ -21,8 +53,8 @@ object juego {
 	}
 }
 
-object musicaDeFondo {
-	const musica = game.sound("duelOfFates.mp3")
+class MusicaDeFondo {
+	const musica
 	
 	method sonar() {
 		musica.shouldLoop(true)
@@ -34,6 +66,9 @@ object musicaDeFondo {
 		musica.stop()
 	}
 }
+
+const musicaMenu = new MusicaDeFondo(musica = game.sound("cancionMenu.mp3"))
+const musicaPartida = new MusicaDeFondo(musica = game.sound("duelOfFates.mp3"))
 
 object asteroide {
 	var property position = game.at((0.. game.width()-1).anyOne(), (0.. game.height()-1).anyOne())
@@ -143,7 +178,7 @@ class Nave {
 	}
 	
 	method tocarCancionVictoria() {
-		musicaDeFondo.parar()
+		musicaPartida.parar()
 		game.sound("cancionVictoria"+ nombreNave +".mp3").play()
 	}
 }
