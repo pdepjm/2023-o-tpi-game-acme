@@ -27,12 +27,31 @@ object juego {
 		game.addVisual(vidaUsa)
 		game.addVisual(vidaMotherRussia)
 		game.addVisual(asteroide)
+		
+		// Colocacion de Power Ups
+		game.onTick(10000, "colocarPowerUp", { self.colocarPowerUp() })
+		
 		// Movimiento del asteroide
 		game.onTick(1000, "moverseAsteroide", { asteroide.moverse() })
 		
 		// Colisioness
-		game.onCollideDo(usa, { proyectil => proyectil.restarVida(usa) })
-		game.onCollideDo(motherRussia, { proyectil => proyectil.restarVida(motherRussia) })
+		game.onCollideDo(usa, { objeto => objeto.interactuar(usa) })
+		game.onCollideDo(motherRussia, { objeto => objeto.interactuar(motherRussia) })
+		
+	}
+	
+	method powerUpAleatorio() {
+		const powerUps = [new Inmunidad(imagen = "inmunidad.png",
+			position = game.at((0.. game.width()-1).anyOne(), (0.. game.height()-1).anyOne())),
+			new DisparoMortal(imagen = "mortal.png",
+				position = game.at((0.. game.width()-1).anyOne(), (0.. game.height()-1).anyOne())),
+				new DisparoAntiInmunidad(imagen = "antiInmunidad.png",
+				position = game.at((0.. game.width()-1).anyOne(), (0.. game.height()-1).anyOne()))]
+		return powerUps.anyOne()
+	}
+	
+	method colocarPowerUp() {
+		game.addVisual(self.powerUpAleatorio())
 	}
 	
 	method reducirVidaNave(nave) {
@@ -70,6 +89,36 @@ class MusicaDeFondo {
 const musicaMenu = new MusicaDeFondo(musica = game.sound("cancionMenu.mp3"))
 const musicaPartida = new MusicaDeFondo(musica = game.sound("duelOfFates.mp3"))
 
+class PowerUp {
+	var property position 
+	var imagen
+	method image() = imagen
+}
+
+class Inmunidad inherits PowerUp {
+	method interactuar(nave) {
+		nave.inmunidad(true)
+		game.removeVisual(self)
+		game.schedule(10000, { nave.inmunidad(false) })
+	}
+}
+
+class DisparoMortal inherits PowerUp {
+	method interactuar(nave) {
+		nave.disparoMortal(true)
+		game.removeVisual(self)
+		game.schedule(10000, { nave.disparoMortal(false) })
+	}
+}
+
+class DisparoAntiInmunidad inherits PowerUp {
+	method interacutar(nave) {
+		nave.disparoAntiInmunidad(true)
+		game.removeVisual(self)
+		game.schedule(10000, { nave.disparoAntiInmunidad(false) })
+	}
+}
+
 object asteroide {
 	var property position = game.at((0.. game.width()-1).anyOne(), (0.. game.height()-1).anyOne())
 	var rebotoArriba = false
@@ -77,8 +126,9 @@ object asteroide {
 	
 	method image() = "asteroide.png"
 	
-	method restarVida(nave) {
-		juego.terminar(nave)
+	method interactuar(nave) {
+		if(!nave.inmunidad())
+			juego.terminar(nave)
 	}
 	
 	method moverseDiagonal(direccion) {
@@ -126,6 +176,9 @@ class Nave {
 	var nombreNave
 	var limite
 	var direccion
+	var property inmunidad = false
+	var property disparoMortal = false
+	var property disparoAntiInmunidad = false
 	var property ganar = false
 
 	method image() = if(ganar) nombreNave + "Victoria.png" else nombreNave + ".png"
@@ -158,7 +211,8 @@ class Nave {
 
 	method disparar() {
 		const bala = new Bala(position = self.position().down(1), 
-		nombreNave = self.nombreNave(), limiteMovimiento = limite, movimiento = direccion)
+		nombreNave = self.nombreNave(), limiteMovimiento = limite, movimiento = direccion,
+		esMortal = disparoMortal, esAntiInmunidad = disparoAntiInmunidad)
 		if(!game.hasVisual(bala) && !ganar)
 		{
 			game.sound("blasterSonido.mp3").play()
@@ -188,6 +242,8 @@ class Bala {
 	var nombreNave
 	var limiteMovimiento
 	var movimiento
+	var esMortal
+	var esAntiInmunidad
 	
 	method image() = "bala" + nombreNave + ".png"
 	
@@ -206,9 +262,19 @@ class Bala {
 		game.onTick(100, "moverseBala" + nombreNave, { self.mover() })
 	}
 	
-	method restarVida(nave) {
-		game.removeVisual(self)
-		juego.reducirVidaNave(nave)
+	method interactuar(nave) {
+		if(esMortal)
+		{
+			juego.terminar(nave)
+		}
+		else
+		{
+			if(!nave.inmunidad() || esAntiInmunidad)
+			{				
+				game.removeVisual(self)
+				juego.reducirVidaNave(nave)
+			}
+		}
 	}
 }
 
@@ -217,6 +283,8 @@ class Vida {
 	var property nave
 
 	method image() = if(nave.vida() < 0) "vacio.png" else (nave.vida() + 1).stringValue() + nave.nombreNave() + ".png"
+	
+	method interactuar(){}
 }
 
 const motherRussia = new Nave(position = game.at(game.width().div(2), game.height() - 1), vida = 2, 
