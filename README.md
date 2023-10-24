@@ -9,8 +9,10 @@
 - Etienne Zimmerman
 
 ## Capturas
-
+### Pantalla de inicio
 ![PantallaComienzo](./assets/menu.jpg)
+
+### Imagenes In-Game
 ![Juego](./assets/screenshots/capturaJuego.PNG)
 ![JuegoDisparo](./assets/screenshots/capturaJuegoDisparo.PNG)
 ![JuegoPowerUp](./assets/screenshots/capturaJuegoPowerUps.PNG)
