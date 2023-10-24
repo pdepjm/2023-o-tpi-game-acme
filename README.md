@@ -14,7 +14,7 @@
 
 ## Reglas de Juego / Instrucciones
 
-![ControlesInstrucciones](./assets/screenshots/controlesInstrucciones.jpg)
+![ControlesInstrucciones](./assets/screenshots/controlesIntrucciones.jpg)
 
 
 ## Otros
