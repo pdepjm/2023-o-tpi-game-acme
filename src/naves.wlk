@@ -66,6 +66,7 @@ object juego {
 	method terminar(nave) {
 		nave.reducirVida()
 		naves.remove(nave)
+		game.removeTickEvent("colocarPowerUp")
 		game.allVisuals().forEach({ cosa => game.removeVisual(cosa) })
 		naves.first().ganar(true)
 		naves.first().festejar()

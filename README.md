@@ -10,11 +10,14 @@
 
 ## Capturas
 
-(agregar)
+![PantallaComienzo](./assets/menu.jpg)
+![Juego](./assets/capturaJuego.jpg)
+![JuegoDisparo](./assets/capturaJuegoDisparo.jpg)
+![JuegoPowerUp](./assets/capturaJuegoPowerUps.jpg)
 
 ## Reglas de Juego / Instrucciones
 
-![ControlesInstrucciones](./assets/screenshots/controlesInstrucciones.jpg)
+![ControlesInstrucciones](./assets/screenshots/controlesIntrucciones.jpg)
 
 
 ## Otros
