@@ -23,7 +23,7 @@
 
 ## Componentes del Juego
 
-![naveUsa](./assets/usa.png) Nave Usa
+![naveUsa](./assets/usa.png) Nave Usa <br>
 ![naveUsa](./assets/motherRussia.png) Nave Mother Russia
 ![asteroide](./assets/asteroide.png) Asteroide
 ![inmunidad](./assets/inmunidad.png) Power Up Inmunidad
