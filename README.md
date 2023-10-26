@@ -21,6 +21,11 @@
 
 ![ControlesInstrucciones](./assets/screenshots/controlesInstrucciones.jpg)
 
+## Componentes del Juego
+
+![naveUsa](.assets/usa.png) Nave Usa
+![naveUsa](.assets/motherRussia.png) Nave Mother Russia
+
 
 ## Otros
 
