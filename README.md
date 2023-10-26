@@ -27,7 +27,7 @@
 ####   Lucha por la verdad, justicia y el sueño americano
 ### ![naveUsa](./assets/motherRussia.png) Nave Mother Russia:
 ####   Lucha por la clase obrera
-### ![asteroide](./assets/asteroide.png) Asteroide
+### ![asteroide](./assets/asteroide.png) Asteroide:
 ####   No lucha por nadie, solo destruye
 ### ![inmunidad](./assets/inmunidad.png) Power Up Inmunidad:
 ####   Los proyectiles comunes no afectan
