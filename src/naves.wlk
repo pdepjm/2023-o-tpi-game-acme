@@ -94,10 +94,11 @@ class PowerUp {
 	var property position 
 	var imagen
 	method image() = imagen
+ method interactuar(nave)
 }
 
 class Inmunidad inherits PowerUp {
-	method interactuar(nave) {
+	override method interactuar(nave) {
 		nave.inmunidad(true)
 		game.removeVisual(self)
 		game.schedule(10000, { nave.inmunidad(false) })
@@ -105,7 +106,7 @@ class Inmunidad inherits PowerUp {
 }
 
 class DisparoMortal inherits PowerUp {
-	method interactuar(nave) {
+	override method interactuar(nave) {
 		nave.disparoMortal(true)
 		game.removeVisual(self)
 		game.schedule(10000, { nave.disparoMortal(false) })
@@ -113,7 +114,7 @@ class DisparoMortal inherits PowerUp {
 }
 
 class DisparoAntiInmunidad inherits PowerUp {
-	method interacutar(nave) {
+	override method interacutar(nave) {
 		nave.disparoAntiInmunidad(true)
 		game.removeVisual(self)
 		game.schedule(10000, { nave.disparoAntiInmunidad(false) })
