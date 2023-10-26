@@ -23,16 +23,16 @@
 
 ## Componentes del Juego
 
-### ![naveUsa](./assets/usa.png) Nave Usa #### Lucha por la verdad, justicia y el sueño americano
-### ![naveUsa](./assets/motherRussia.png) Nave Mother Russia
+### ![naveUsa](./assets/usa.png) Nave Usa: #### Lucha por la verdad, justicia y el sueño americano
+### ![naveUsa](./assets/motherRussia.png) Nave Mother Russia:
 #### Lucha por la clase obrera
 ### ![asteroide](./assets/asteroide.png) Asteroide
 #### No lucha por nadie, solo destruye
-### ![inmunidad](./assets/inmunidad.png) Power Up Inmunidad
+### ![inmunidad](./assets/inmunidad.png) Power Up Inmunidad:
 #### Los proyectiles comunes no afectan
-### ![antiInmunidad](./assets/antiInmunidad.png) Power Up Anti Inmunidad
+### ![antiInmunidad](./assets/antiInmunidad.png) Power Up Anti Inmunidad:
 #### Permite a los proyectiles afectar a la nave a pesar de que cuente con inmunidad
-### ![disparoMortal](./assets/mortal.png) Power Up Disparo Mortal
+### ![disparoMortal](./assets/mortal.png) Power Up Disparo Mortal:
 #### Independientemente de tener inmunidad, este disparo termina con la nave afectada, en caso de impactar 
 
 
