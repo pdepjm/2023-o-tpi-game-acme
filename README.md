@@ -30,7 +30,7 @@
 ### ![asteroide](./assets/asteroide.png) Asteroide:
 ####   No lucha por nadie, solo destruye
 ### ![inmunidad](./assets/inmunidad.png) Power Up Inmunidad:
-####   Los proyectiles comunes no afectan
+####   Los proyectiles comunes no afectan a la nave
 ### ![antiInmunidad](./assets/antiInmunidad.png) Power Up Anti Inmunidad:
 ####   Permite a los proyectiles afectar a la nave a pesar de que cuente con inmunidad
 ### ![disparoMortal](./assets/mortal.png) Power Up Disparo Mortal:
