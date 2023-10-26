@@ -24,9 +24,11 @@
 ## Componentes del Juego
 
 ![naveUsa](./assets/usa.png) Nave Usa
-![naveUsa](.%assets/motherRussia.png) Nave Mother Russia
+![naveUsa](./assets/motherRussia.png) Nave Mother Russia
 ![asteroide](./assets/asteroide.png) Asteroide
 ![inmunidad](./assets/inmunidad.png) Power Up Inmunidad
+![antiInmunidad](./assets/antiInmunidad.png) Power Up Anti Inmunidad
+![disparoMortal](./assets/mortal.png) Power Up Disparo Mortal
 
 
 ## Otros
