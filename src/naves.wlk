@@ -94,16 +94,18 @@ class PowerUp {
 	var property position 
 	var imagen
 	method image() = imagen
- method aplicarPowerUp()
- method interactuar(nave) {
-  game.removeVisual(self)
-  self.aplicarPowerUp()
- }
+	
+ 	method aplicarPowerUp(nave)
+ 	
+ 	method interactuar(nave) {
+  		game.removeVisual(self)
+  		self.aplicarPowerUp(nave)
+ 	}
 }
 
 class Inmunidad inherits PowerUp {
-	override method aplicarPowerUp(nave) 
-  nave.inmunidad(true)
+	override method aplicarPowerUp(nave) {
+  		nave.inmunidad(true)
 		game.schedule(10000, { nave.inmunidad(false) })
 	}
 }
