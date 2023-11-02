@@ -73,9 +73,10 @@ object juego {
 		naves.remove(nave)
 		game.removeTickEvent("colocarPowerUp")
 		game.allVisuals().forEach({ cosa => game.removeVisual(cosa) })
+		nave.perder(true)
 		naves.first().ganar(true)
 		naves.first().festejar()
-	}
+		}
 }
 
 class MusicaDeFondo {
@@ -83,7 +84,7 @@ class MusicaDeFondo {
 	
 	method sonar() {
 		musica.shouldLoop(true)
-		musica.volume(0.2)
+		musica.volume(1)
 		game.schedule(500, {musica.play()})
 	}
 	
@@ -190,9 +191,10 @@ class Nave {
 	var property disparoMortal = false
 	var property disparoAntiInmunidad = false
 	var property ganar = false
-
+	var property perder = false
+	
 	method image() = if(ganar) nombreNave + "Victoria.png" else nombreNave + ".png"
-
+	
 	method nombreNave() = nombreNave
 
 	method moverseArriba() {
@@ -206,7 +208,7 @@ class Nave {
 	}
 	
 	method moverseIzquierda() {
-		if(!ganar)
+		if(!ganar && !perder)
 		{
 			if(position.x() > 0)
 				position = position.left(1)
@@ -217,7 +219,7 @@ class Nave {
 	}
 	
 	method moverseDerecha() {
-		if(!ganar)
+		if(!ganar && !perder)
 		{
 			if(position.x() < game.width() - 1 && !ganar)
 				position = position.right(1)
@@ -230,7 +232,7 @@ class Nave {
 		const bala = new Bala(position = self.position().down(1), 
 		nombreNave = self.nombreNave(), limiteMovimiento = limite, movimiento = direccion,
 		esMortal = disparoMortal, esAntiInmunidad = disparoAntiInmunidad)
-		if(!game.hasVisual(bala) && !ganar)
+		if(!game.hasVisual(bala) && !ganar && !perder)
 		{
 			game.sound("blasterSonido.mp3").play()
 			game.addVisual(bala)
