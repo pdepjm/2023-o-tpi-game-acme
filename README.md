@@ -14,7 +14,7 @@
 
 ### Imagenes In-Game
 ![Juego](./assets/screenshots/capturaJuego.PNG)
-
+***
 ![JuegoDisparo](./assets/screenshots/capturaJuegoDisparo.PNG)
 
 ![JuegoPowerUp](./assets/screenshots/capturaJuegoPowerUps.PNG)
