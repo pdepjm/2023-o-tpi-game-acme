@@ -8,7 +8,7 @@
 - Kevin Tarrisse :soccer:
 - Etienne Zimmerman :bike:
 
-## Capturas
+## Capturas :camera:
 ### Pantalla de inicio
 ![PantallaComienzo](./assets/menu.jpg)
 
@@ -19,7 +19,7 @@
 
 ![JuegoPowerUp](./assets/screenshots/capturaJuegoPowerUps.PNG)
 
-## Reglas de Juego / Instrucciones
+## Reglas de Juego / Instrucciones :ledger:
 
 ![ControlesInstrucciones](./assets/screenshots/controlesInstrucciones.jpg)
 
