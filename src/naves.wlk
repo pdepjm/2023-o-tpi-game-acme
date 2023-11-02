@@ -300,13 +300,7 @@ class Vida {
 	var property nave
 
 	method image() = if(nave.vida() < 0) "vacio.png" else (nave.vida() + 1).stringValue() + nave.nombreNave() + ".png"
-	
-<<<<<<< HEAD
-	method interactuar(algo){}
-=======
 	method interactuar(laNave){}
->>>>>>> branch 'master' of https://github.com/pdepjm/2023-o-tpi-game-acme.git
-}
 
 const motherRussia = new Nave(position = game.at(game.width().div(2), game.height() - 1), vida = 2, 
 	limiteAbajo = game.height().div(2), limiteArriba = game.height() - 1, nombreNave = "motherRussia",
