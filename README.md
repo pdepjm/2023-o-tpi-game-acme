@@ -38,7 +38,7 @@
 ### ![disparoMortal](./assets/mortal.png) Power Up Disparo Mortal:
 ####   Independientemente de tener inmunidad, este disparo termina con la nave afectada, en caso de impactar 
 
-##### Todos los power ups tienen una duración de 10 segundos
+    Todos los power ups tienen una duración de 10 segundos
 
 ## Otros
 
