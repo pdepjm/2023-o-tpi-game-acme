@@ -21,7 +21,7 @@
 
 ![ControlesInstrucciones](./assets/screenshots/controlesInstrucciones.jpg)
 
-## Componentes del Juego
+## Personajes
 
 ### ![naveUsa](./assets/usa.png) Nave Usa: 
 ####   Lucha por la verdad, justicia y el sueño americano
@@ -29,6 +29,8 @@
 ####   Lucha por la clase obrera
 ### ![asteroide](./assets/asteroideParaElReadMe.png) Asteroide:
 ####   No lucha por nadie, solo destruye
+
+## Power Ups
 ### ![inmunidad](./assets/inmunidad.png) Power Up Inmunidad:
 ####   Los proyectiles comunes no afectan a la nave
 ### ![antiInmunidad](./assets/antiInmunidad.png) Power Up Anti Inmunidad:
@@ -36,6 +38,7 @@
 ### ![disparoMortal](./assets/mortal.png) Power Up Disparo Mortal:
 ####   Independientemente de tener inmunidad, este disparo termina con la nave afectada, en caso de impactar 
 
+##### Todos los power ups tienen una duración de 10 segundos
 
 ## Otros
 
