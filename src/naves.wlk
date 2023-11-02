@@ -17,26 +17,31 @@ object menu {
 
 object juego {
 	const naves = [usa, motherRussia]
+	var comenzado = false
 	
 	method comenzar() {
-		game.removeVisual(menu)
-		musicaMenu.parar()
-		musicaPartida.sonar()
-		game.addVisual(motherRussia)
-		game.addVisual(usa)
-		game.addVisual(vidaUsa)
-		game.addVisual(vidaMotherRussia)
-		game.addVisual(asteroide)
-		
-		// Colocacion de Power Ups
-		game.onTick(10000, "colocarPowerUp", { self.colocarPowerUp() })
-		
-		// Movimiento del asteroide
-		game.onTick(1000, "moverseAsteroide", { asteroide.moverse() })
-		
-		// Colisioness
-		game.onCollideDo(usa, { objeto => objeto.interactuar(usa) })
-		game.onCollideDo(motherRussia, { objeto => objeto.interactuar(motherRussia) })
+		if(!comenzado)
+		{
+			comenzado = true
+			game.removeVisual(menu)
+			musicaMenu.parar()
+			musicaPartida.sonar()
+			game.addVisual(motherRussia)
+			game.addVisual(usa)
+			game.addVisual(vidaUsa)
+			game.addVisual(vidaMotherRussia)
+			game.addVisual(asteroide)
+			
+			// Colocacion de Power Ups
+			game.onTick(10000, "colocarPowerUp", { self.colocarPowerUp() })
+			
+			// Movimiento del asteroide
+			game.onTick(1000, "moverseAsteroide", { asteroide.moverse() })
+			
+			// Colisioness
+			game.onCollideDo(usa, { objeto => objeto.interactuar(usa) })
+			game.onCollideDo(motherRussia, { objeto => objeto.interactuar(motherRussia) })
+		}
 		
 	}
 	
