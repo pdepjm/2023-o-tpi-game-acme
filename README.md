@@ -23,6 +23,8 @@
 
 ![ControlesInstrucciones](./assets/screenshots/controlesInstrucciones.jpg)
 
+    Aclaración: Al llegar a cualquiera de los bordes laterales, la nave aparece en el borde contrario
+
 ## Personajes
 
 ### ![naveUsa](./assets/usa.png) Nave Usa: 
@@ -40,9 +42,7 @@
 ### ![disparoMortal](./assets/mortal.png) Power Up Disparo Mortal:
 ####   Independientemente de tener inmunidad, este disparo termina con la nave afectada, en caso de impactar 
 
-~~~
-Todos los power ups tienen una duración de 10 segundos
-~~~
+    Aclaración: Todos los power ups tienen una duración de 10 segundos
 
 ## Otros
 
