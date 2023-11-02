@@ -1,6 +1,6 @@
 # Star Cold War
 
-## Equipo de desarrollo
+## Equipo de desarrollo :video_game:
 
 - Noah Martin Santander Chavez :sunglasses:
 - Martina Caneda :chicken:
@@ -25,7 +25,7 @@
 
     Aclaración: Al llegar a cualquiera de los bordes laterales, la nave aparece en el borde contrario
 
-## Personajes
+## Personajes :space_invader:
 
 ### ![naveUsa](./assets/usa.png) Nave Usa: 
 ####   Lucha por la verdad, justicia y el sueño americano
@@ -34,7 +34,7 @@
 ### ![asteroide](./assets/asteroideParaElReadMe.png) Asteroide:
 ####   No lucha por nadie, solo destruye
 
-## Power Ups
+## Power Ups :rocket:
 ### ![inmunidad](./assets/inmunidad.png) Power Up Inmunidad:
 ####   Los proyectiles comunes no afectan a la nave
 ### ![antiInmunidad](./assets/antiInmunidad.png) Power Up Anti Inmunidad:
