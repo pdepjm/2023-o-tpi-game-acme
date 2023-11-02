@@ -201,17 +201,24 @@ class Nave {
 	}
 	
 	method moverseIzquierda() {
-		if(position.x() > 0 && !ganar)
-			position = position.left(1)
-		else
-			position = game.at(game.width() - 1, position.y())
+		if(!ganar)
+		{
+			if(position.x() > 0)
+				position = position.left(1)
+			else
+				position = game.at(game.width() - 1, position.y())
+		}
+		
 	}
 	
 	method moverseDerecha() {
-		if(position.x() < game.width() - 1 && !ganar)
-			position = position.right(1)
-		else
-			position = game.at(0, position.y())
+		if(!ganar)
+		{
+			if(position.x() < game.width() - 1 && !ganar)
+				position = position.right(1)
+			else
+				position = game.at(0, position.y())
+		}
 	}
 
 	method disparar() {
