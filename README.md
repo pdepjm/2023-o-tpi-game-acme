@@ -2,11 +2,11 @@
 
 ## Equipo de desarrollo
 
-- Noah Martin Santander Chavez
-- Martina Caneda
-- Luca Aiello
-- Kevin Tarrisse
-- Etienne Zimmerman
+- Noah Martin Santander Chavez :sunglasses:
+- Martina Caneda :chicken:
+- Luca Aiello :camel:
+- Kevin Tarrisse :soccer:
+- Etienne Zimmerman :bike:
 
 ## Capturas
 ### Pantalla de inicio
