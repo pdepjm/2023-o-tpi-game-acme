@@ -289,7 +289,7 @@ class Vida {
 
 	method image() = if(nave.vida() < 0) "vacio.png" else (nave.vida() + 1).stringValue() + nave.nombreNave() + ".png"
 	
-	method interactuar(){}
+	method interactuar(laNave){}
 }
 
 const motherRussia = new Nave(position = game.at(game.width().div(2), game.height() - 1), vida = 2, 
