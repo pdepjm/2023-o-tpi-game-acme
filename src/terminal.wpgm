@@ -1,0 +1,36 @@
+import wollok.game.*
+import juego.*
+import elMenu.*
+
+program juego {
+	// Configuración básica
+	game.title("Star Cold War")
+	game.height(10)
+	game.width(20)
+	game.boardGround("espacio.png")
+	game.addVisual(menu)
+	musicaMenu.sonar()
+	
+	// Control del menu 
+	keyboard.c().onPressDo { juego.comenzar() }
+	keyboard.i().onPressDo { menu.menu(false) }
+	keyboard.backspace().onPressDo { menu.menu(true) }
+	
+	
+	// Movimiento de las naves
+	keyboard.w().onPressDo { motherRussia.moverseArriba() }
+	keyboard.a().onPressDo { motherRussia.moverseIzquierda() }
+	keyboard.s().onPressDo { motherRussia.moverseAbajo() }
+	keyboard.d().onPressDo { motherRussia.moverseDerecha() }
+	keyboard.up().onPressDo { usa.moverseArriba() }
+	keyboard.left().onPressDo { usa.moverseIzquierda() }
+	keyboard.down().onPressDo { usa.moverseAbajo() }
+	keyboard.right().onPressDo { usa.moverseDerecha() }
+	
+	// Disparo de las naves
+	keyboard.space().onPressDo { motherRussia.disparar() }
+	keyboard.enter().onPressDo { usa.disparar() }
+	
+	// Comienzo del juego
+	game.start()
+}
